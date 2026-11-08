@@ -11,3 +11,4 @@ A special interactive Diwali celebration web experience crafted with love by **M
 - 🎶 **Procedural Romantic Music**: Soothing melody generated live via Web Audio API.
 - 📖 **Our Journey Story**: An animated story recap from the first random hello, late-night talks, meeting in Chandigarh, cooking together, to celebrating Diwali together.
 - 💖 **Floating Hearts & Fireworks**: Touch-responsive bursting sparklers and lanterns.
+

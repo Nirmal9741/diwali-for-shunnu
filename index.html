@@ -236,7 +236,7 @@ function heart(){var h=document.createElement('span');h.textContent=['💖','�
 var msgs=[
  'May every diya you light bring a little more joy into your life, '+her+'. 🪔',
  'You are the brightest light in my life, my forever Diwali. ✨',
- 'With you, every single day feels like a festival, '+her.'.',
+ 'With you, every single day feels like a festival, '+her+'.',
  'May this Diwali wrap you in love, laughter and the sweetest moments.',
  'Thank you for being you. Happy Diwali, my love ❤️'
 ];
@@ -263,6 +263,7 @@ function boom(x){if(!ac||!musicOn||!nb)return;try{var t=ac.currentTime,out=maste
 function nextNote(){if(!ac)return;var r=Math.random();idx+=r<.35?-1:r<.7?1:r<.8?-2:r<.9?2:0;idx=Math.max(0,Math.min(sc.length-1,idx));var d=dur[Math.random()*dur.length|0];if(Math.random()>.12)pluck(sc[idx],ac.currentTime+.05,nl,vol);if(Math.random()<bell)pluck(sc[idx]*2,ac.currentTime+.05,3.5,.07);setTimeout(nextNote,d*1000)}
 function startMusic(){try{
   ac=new (window.AudioContext||window.webkitAudioContext)();
+  if(ac.state==='suspended')ac.resume();
   master=ac.createGain();master.gain.setValueAtTime(0,ac.currentTime);master.gain.linearRampToValueAtTime(.55,ac.currentTime+4);master.connect(ac.destination);nb=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);var nd=nb.getChannelData(0);for(var q=0;q<nd.length;q++)nd[q]=Math.random()*2-1;
   bus=ac.createGain();bus.connect(master);
   var dly=ac.createDelay(1);dly.delayTime.value=.42;var fb=ac.createGain();fb.gain.value=.38;var wet=ac.createGain();wet.gain.value=.5;var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=2400;
@@ -344,6 +345,7 @@ function light(){
   setTimeout(function(){show();setInterval(show,5200)},2600);
 }
 $('#light').addEventListener('click',light);
+$('#intro').addEventListener('click',light);
 document.addEventListener('pointerdown',function(e){if(lit&&!storyOn)burst(e.clientX,e.clientY)});
 $('#wish').addEventListener('click',function(e){e.stopPropagation();openStory();for(var i=0;i<0;i++){(function(i){setTimeout(function(){burst(W*(.1+Math.random()*.8),H*(.1+Math.random()*.4));heart();heart()},i*220)})(i)}});
 })();
